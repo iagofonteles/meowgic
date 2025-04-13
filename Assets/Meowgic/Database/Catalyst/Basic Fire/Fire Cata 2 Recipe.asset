@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c036cb6faff4c26bd9f95d55feebfb5, type: 3}
+  m_Name: Fire Cata 2 Recipe
+  m_EditorClassIdentifier: 
+  displayName: 
+  icon: {fileID: 0}
+  result: {fileID: 11400000, guid: 825786834190a3940b5dbfca56c42d5f, type: 2}
+  ingredients:
+  - {fileID: 11400000, guid: ca1c185bab28f5a48932f2db7ff04b86, type: 2}
+  - {fileID: 11400000, guid: ca1c185bab28f5a48932f2db7ff04b86, type: 2}

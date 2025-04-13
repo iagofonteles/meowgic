@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75778b7110a801a4da6a8f50b707346d, type: 3}
-  m_Name: Fire Cata 2
+  m_Script: {fileID: 11500000, guid: 11deda2f8d6c4c55ab4a9d027cb19fbd, type: 3}
+  m_Name: Any
   m_EditorClassIdentifier: 
   displayName: 
-  icon: {fileID: 0}
-  element: {fileID: 11400000, guid: 271073c85cdfcc7479546cf9f947ba3b, type: 2}
-  grade: 2
+  icon: {fileID: 21300000, guid: 3faa68d4e2f05f04786133598667ac36, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 1}
