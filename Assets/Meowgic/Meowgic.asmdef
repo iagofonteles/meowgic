@@ -1,0 +1,20 @@
+{
+    "name": "Meowgic",
+    "rootNamespace": "",
+    "references": [
+        "Drafts",
+        "Drafts.DataView",
+        "Unity.TextMeshPro",
+        "Unity.Cinemachine",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
