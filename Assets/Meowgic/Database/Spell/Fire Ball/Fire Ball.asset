@@ -15,3 +15,21 @@ MonoBehaviour:
   displayName: 
   icon: {fileID: 0}
   element: {fileID: 11400000, guid: 271073c85cdfcc7479546cf9f947ba3b, type: 2}
+  speed: 3
+  prefab: {fileID: 0}
+  cost:
+  - {fileID: 11400000, guid: ca1c185bab28f5a48932f2db7ff04b86, type: 2}
+  - {fileID: 11400000, guid: ca1c185bab28f5a48932f2db7ff04b86, type: 2}
+  effects:
+    list:
+    - rid: 4341673770565238865
+  references:
+    version: 2
+    RefIds:
+    - rid: 4341673770565238865
+      type: {class: Default, ns: Meowgic.Match.Spells, asm: Meowgic}
+      data:
+        damage: 10
+        heal: 0
+        shield: 0
+        area: 0

@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 namespace Meowgic.Match.Spells
 {
+    [Serializable]
     public class Default : Effect
     {
         [SerializeField] private int damage;

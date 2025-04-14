@@ -9,15 +9,15 @@ namespace Meowgic
     public class Spell : DatabaseItemSO
     {
         [SerializeField] private Element element;
-        [SerializeField, Prefab] private int speed;
-        [SerializeField, Prefab] private GameObject prefab;
-        [SerializeField, Prefab] private CatalystBase[] cost;
-        [SerializeReference, TypeInstance] private Effect[] effects;
+        [SerializeField] private int speed = 3;
+        [SerializeField, Prefab] private Transform prefab;
+        [SerializeField] private CatalystBase[] cost;
+        [SerializeField] private TypeInstances<Effect> effects;
 
         public override Sprite Icon => icon ? icon : element.Icon;
         public Element Element => element;
         public int Speed => speed;
-        public GameObject Prefab => prefab;
+        public Transform Prefab => prefab;
         public CatalystBase[] Cost => cost;
         public IReadOnlyList<Effect> Effects => effects;
     }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Drafts;
 using UnityEngine;
 
 namespace Meowgic.Match
@@ -11,10 +12,10 @@ namespace Meowgic.Match
     public class Catalyst
     {
         [SerializeField] private CatalystBase catalystBase;
-        [SerializeField] private List<Effect> effects = new();
+        [SerializeField] private TypeInstances<Effect> effects = new();
 
         public CatalystBase Base => catalystBase;
-        public List<Effect> Effects => effects;
+        public IList<Effect> Effects => effects;
 
         public Catalyst(CatalystBase catalystBase)
         {
