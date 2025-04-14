@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
 using UnityEngine;
 
 namespace Drafts.DataView
@@ -12,6 +13,8 @@ namespace Drafts.DataView
         [SerializeField] private List<DataView> views = new();
 
         public IReadOnlyList<DataView> Views => views;
+        public T GetView<T>(int index) => views[index].GetComponent<T>();
+        public IEnumerable<T> GetViews<T>() => views.Select(v => v.GetComponent<T>());
 
         private bool _isFixed;
 
@@ -131,6 +134,20 @@ namespace Drafts.DataView
                     Destroy(view.gameObject);
                 views.Clear();
             }
+        }
+
+        [ContextMenu("Log Collection")]
+        public void LogCollection()
+        {
+            var size = 0;
+            var names = "";
+            foreach (var item in Data)
+            {
+                names += "\n" + item;
+                size++;
+            }
+
+            Debug.Log($"Size = {size}{names}");
         }
     }
 }

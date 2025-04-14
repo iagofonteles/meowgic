@@ -87,7 +87,7 @@ namespace Meowgic.Match
 
         private static IEnumerable<EffectScript> EnumerateEffects(SpellCastArgs cast)
         {
-            return cast.catalysts.SelectMany(c => c.Effects).Concat(cast.spell.Effects);
+            return cast.catalysts.SelectMany(c => c.Effects.Select(e => e.Script)).Concat(cast.spell.Effects);
         }
     }
 }

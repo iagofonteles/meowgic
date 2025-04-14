@@ -20,6 +20,7 @@ namespace Meowgic.UI
         {
             if (displayName) _defaultName = displayName.text;
             if (description) _defaultDesc = description.text;
+            icon.TrySetColor(new(1, 1, 1, .5f));
         }
 
         protected override void Subscribe()

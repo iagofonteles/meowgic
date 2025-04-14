@@ -17,7 +17,8 @@ namespace Meowgic
         public List<Catalyst> Inventory => inventory;
         public int MaxHealth => 100;
         public int CastAmount => 3;
-        
+        public IEnumerable<Spell> Spells => Game.Database.GetAll<Spell>();
+
         public IEnumerable<SpellPreparation> Ai(Actor actor)
         {
             yield break;

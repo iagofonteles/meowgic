@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Meowgic.Match
 {
@@ -16,6 +17,8 @@ namespace Meowgic.Match
         {
             (l[n], l[m]) = (l[m], l[n]);
         }
+
+        public static T Random<T>(this IReadOnlyList<T> list) => Random(list, 1).FirstOrDefault();
 
         /// <summary>Get random _values from the array. They are still ordered though.</summary>
         public static List<T> Random<T>(this IReadOnlyList<T> list, int num)

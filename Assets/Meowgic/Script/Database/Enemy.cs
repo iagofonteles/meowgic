@@ -16,7 +16,7 @@ namespace Meowgic
         public int Health => health;
         public int MaxHealth => health;
         public int CastAmount => castAmount;
-        public Spell[] Spells => spells;
+        public IEnumerable<Spell> Spells => spells;
 
         IEnumerable<SpellPreparation> IActor.Ai(Actor actor) => _ai.GetPreparation(actor);
 

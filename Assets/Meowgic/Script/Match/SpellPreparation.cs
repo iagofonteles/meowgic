@@ -25,6 +25,7 @@ namespace Meowgic.Match
 
         public SpellPreparation(Actor actor, ObservableList<SpellPreparation> preparation)
         {
+            caster = actor;
             Preparation = preparation;
             spell.OnChanged += UpdateCatalysts;
         }

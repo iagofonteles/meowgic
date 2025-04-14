@@ -4,15 +4,13 @@ using UnityEngine;
 
 namespace Meowgic.Match.UI
 {
-    public class CatalystView : DataView<Catalyst>
+    public class EffectView : DataView<Effect>
     {
-        [SerializeField] private CatalystBaseView baseView;
-        [SerializeField] private CollectionView effects;
+        [SerializeField] private DatabaseItemSOView baseView;
 
         protected override void Subscribe()
         {
-            baseView.TrySetData(Data.Base);
-            effects.TrySetData(Data.Effects);
+            baseView.TrySetData(Data);
         }
 
         protected override void Unsubscribe()

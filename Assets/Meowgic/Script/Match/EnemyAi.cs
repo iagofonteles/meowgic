@@ -15,7 +15,7 @@ namespace Meowgic.Match
             var list = new ObservableList<SpellPreparation>();
             var item = new SpellPreparation(actor, list);
             list.Add(item);
-            item.Spell.Value = _enemy.Spells.Random(1).First();
+            item.Spell.Value = _enemy.Spells.ToList().Random();
             return list;
         }
     }

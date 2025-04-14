@@ -38,6 +38,7 @@ namespace Meowgic
                 return (IDatabase)Activator.CreateInstance(dbType, assets);
             }
 
+            _map = null;
             EditorUtility.SetDirty(this);
         }
     }

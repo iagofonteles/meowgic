@@ -1,12 +1,19 @@
 using Drafts.DataView;
 using Meowgic.UI;
+using UnityEngine;
 
 namespace Meowgic.Match.UI
 {
     public class SpellPreparationView : DataView<SpellPreparation>
     {
-        public SpellView spell;
-        public CollectionView catalysts;
+        [SerializeField] private SpellView spell;
+        [SerializeField] private CollectionView catalysts;
+        [SerializeField] private CollectionView availableSpells;
+        [SerializeField] private CollectionView availableCatalysts;
+
+        public CollectionView Catalysts => catalysts;
+        public CollectionView AvailableSpells => availableSpells;
+        public CollectionView AvailableCatalysts => availableCatalysts;
 
         protected override void Subscribe()
         {
@@ -32,7 +39,7 @@ namespace Meowgic.Match.UI
             for (var i = 0; i < Data.Spell.Value.Cost.Length; i++)
             {
                 var baseCatalyst = Data.Spell.Value.Cost[i];
-                var icon = catalysts.Views[i].GetComponent<DatabaseItemSOView>()?.Icon;
+                var icon = catalysts.GetView<DatabaseItemSOView>(i)?.Icon;
                 if (icon) icon.sprite = baseCatalyst.Icon;
             }
         }
