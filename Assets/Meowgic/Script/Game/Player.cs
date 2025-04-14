@@ -15,6 +15,12 @@ namespace Meowgic
         public string DisplayName => displayName;
         public int Health => health;
         public List<Catalyst> Inventory => inventory;
-        int IActor.MaxHealth => 100;
+        public int MaxHealth => 100;
+        public int CastAmount => 3;
+        
+        public IEnumerable<SpellPreparation> Ai(Actor actor)
+        {
+            yield break;
+        }
     }
 }

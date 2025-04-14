@@ -11,11 +11,18 @@ namespace Meowgic.Match
     {
         [SerializeField] private List<Actor> actors;
         [SerializeField] private CardPool<Catalyst> pool;
+        [SerializeField] private SpellCastArgs[] casts;
 
         public Battle Battle { get; }
         public Side OtherSide => this == Battle.PlayerSide ? Battle.EnemySide : Battle.PlayerSide;
         public IReadOnlyList<Actor> Actors => actors;
         public CardPool<Catalyst> Pool => pool;
+
+        public SpellCastArgs[] Casts
+        {
+            get => casts;
+            set => casts = value;
+        }
 
         public Side(Battle battle, IEnumerable<IActor> actors, IEnumerable<Catalyst> inventory)
         {

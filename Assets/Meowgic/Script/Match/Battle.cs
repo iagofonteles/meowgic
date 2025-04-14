@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Meowgic.Match
@@ -15,7 +16,7 @@ namespace Meowgic.Match
     /// Everything the battle state need
     /// </summary>
     [Serializable]
-    public class Battle
+    public partial class Battle
     {
         [SerializeField] private Side playerSide;
         [SerializeField] private Side enemySide;
@@ -32,10 +33,25 @@ namespace Meowgic.Match
             enemySide = new(this, enemies, enemyInventory);
         }
 
-        public BattleResult ExecutePlayerAction(IEnumerable<SpellCast> spells)
+        public void SetupTurn()
         {
-            //TODO execute spells and see if game is over
-            throw new NotImplementedException();
+            var prep = enemySide.Actors.SelectMany(a => a.Ai(a));
+            enemySide.Casts = prep.GetCasts(Player);
+            playerSide.Casts = null;
+        }
+
+        [Obsolete]
+        public void PlayerInput(SpellPreparation[] casts)
+        {
+            playerSide.Casts = casts.GetCasts(enemySide.Actors.First());
+        }
+
+        public BattleResult GetBattleResult()
+        {
+            var playerHealth = playerSide.Actors.Sum(a => a.Health.Value);
+            if (playerHealth == 0) return BattleResult.Lose;
+            var enemyHealth = playerSide.Actors.Sum(a => a.Health.Value);
+            return enemyHealth == 0 ? BattleResult.Win : BattleResult.None;
         }
     }
 }

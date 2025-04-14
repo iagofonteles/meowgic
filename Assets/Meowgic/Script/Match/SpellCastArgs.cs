@@ -3,9 +3,6 @@ using System.Collections.Generic;
 
 namespace Meowgic.Match
 {
-    /// <summary>
-    /// Player combination of Spell + Catalysts used
-    /// </summary>
     [Serializable]
     public class SpellCastArgs
     {
@@ -13,6 +10,10 @@ namespace Meowgic.Match
         public Actor target;
         public Spell spell;
         public List<Catalyst> catalysts;
+        public int speed;
         public int damage;
+        public int heal;
+        public int shield;
+        public Action<SpellCastArgs> Effect;
     }
 }
