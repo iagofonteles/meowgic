@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Meowgic
 {
-    public abstract class DatabaseItemSO : ScriptableObject
+    public abstract class DatabaseItemSO : ScriptableObject, IDatabaseItem
     {
         [SerializeField] protected string displayName;
         [SerializeField] protected Sprite icon;
