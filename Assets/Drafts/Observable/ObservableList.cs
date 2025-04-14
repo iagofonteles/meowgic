@@ -69,5 +69,14 @@ namespace Drafts
             var args = new ChangedArgs(Action.Remove, item, index);
             CollectionChanged?.Invoke(this, args);
         }
+
+        public void Swap(int indexA, int indexB)
+        {
+            (list[indexA], list[indexB]) = (list[indexB], list[indexA]);
+            var args = new ChangedArgs(Action.Replace, list[indexB], list[indexA], indexA);
+            CollectionChanged?.Invoke(this, args);
+            args = new ChangedArgs(Action.Replace, list[indexA], list[indexB], indexB);
+            CollectionChanged?.Invoke(this, args);
+        }
     }
 }

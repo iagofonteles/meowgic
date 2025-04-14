@@ -14,6 +14,8 @@ namespace Meowgic.UI
         private string _defaultName;
         private string _defaultDesc;
 
+        public Image Icon => icon;
+
         private void Awake()
         {
             if (displayName) _defaultName = displayName.text;

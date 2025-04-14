@@ -32,6 +32,12 @@ namespace Drafts.DataView
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void TrySetData(this DataView view, object data)
+        {
+            if (view) view.SetData(data);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void TrySetData<T>(this DataView<T> view, T data)
         {
             if (view) view.Data = data;

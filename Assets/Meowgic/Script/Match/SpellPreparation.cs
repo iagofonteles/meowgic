@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Drafts;
+using UnityEngine;
 
 namespace Meowgic.Match
 {
@@ -10,39 +12,41 @@ namespace Meowgic.Match
     [Serializable]
     public class SpellPreparation
     {
-        public IReadOnlyList<SpellPreparation> PreparationList { get; }
-        [Obsolete] public int Index { get; }
-        public Actor caster;
-        public Spell spell;
-        public Catalyst[] catalysts = new Catalyst[2];
+        [SerializeField] private Actor caster;
+        [SerializeField] private Observable<Spell> spell = new();
+        [SerializeField] private ObservableList<Catalyst> catalysts = new();
 
-        public SpellPreparation(int index, List<SpellPreparation> preparationList)
+        public ObservableList<SpellPreparation> Preparation { get; }
+        public Actor Caster => caster;
+        public Observable<Spell> Spell => spell;
+        public ObservableList<Catalyst> Catalysts => catalysts;
+
+        public int GetIndex() => Preparation.IndexOf(this);
+
+        public SpellPreparation(Actor actor, ObservableList<SpellPreparation> preparation)
         {
-            Index = index;
-            PreparationList = preparationList;
+            Preparation = preparation;
+            spell.OnChanged += UpdateCatalysts;
+        }
+
+        private void UpdateCatalysts(object value)
+        {
+            catalysts.Clear();
+            if (value is not Spell s) return;
+            foreach (var _ in s.Cost) catalysts.Add(null);
         }
     }
 
     public static class SpellPreparationExtensions
     {
-        public static void SetCastAmount(this List<SpellPreparation> preparations, int amount)
-        {
-            preparations.Clear();
-            for (var i = 0; i < amount; i++)
-            {
-                var cast = new SpellPreparation(preparations.Count, preparations);
-                preparations.Add(cast);
-            }
-        }
-
         public static SpellCastArgs[] GetCasts(this IEnumerable<SpellPreparation> preparations, Actor target)
             => preparations.Select(p => new SpellCastArgs
                 {
-                    caster = p.caster,
+                    caster = p.Caster,
                     target = target,
-                    spell = p.spell,
-                    speed = p.spell.Speed,
-                    catalysts = p.catalysts.Where(c => c is not null).ToList(),
+                    spell = p.Spell.Value,
+                    speed = p.Spell.Value.Speed,
+                    catalysts = p.Catalysts.Where(c => c is not null).ToList(),
                 }
             ).ToArray();
     }

@@ -4,6 +4,19 @@ using UnityEngine;
 
 namespace Meowgic.Match.UI
 {
+    public class EffectView : DataView<EffectScript>
+    {
+        [SerializeField]
+        
+        protected override void Subscribe()
+        {
+            throw new System.NotImplementedException();
+        }
+        protected override void Unsubscribe()
+        {
+            throw new System.NotImplementedException();
+        }
+    }
     public class CatalystView : DataView<Catalyst>
     {
         [SerializeField] private CatalystBaseView baseView;

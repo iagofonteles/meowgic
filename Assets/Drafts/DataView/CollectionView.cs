@@ -11,6 +11,8 @@ namespace Drafts.DataView
         [SerializeField] private DataView itemTemplate;
         [SerializeField] private List<DataView> views = new();
 
+        public IReadOnlyList<DataView> Views => views;
+
         private bool _isFixed;
 
         protected virtual void Awake()
@@ -45,17 +47,7 @@ namespace Drafts.DataView
             if (Data is INotifyCollectionChanged notifyCollection)
                 notifyCollection.CollectionChanged -= CollectionChanged;
 
-            if (_isFixed)
-            {
-                foreach (var view in views)
-                    view.SetData(null);
-            }
-            else
-            {
-                foreach (var view in views)
-                    Destroy(view.gameObject);
-                views.Clear();
-            }
+            Clear();
         }
 
         public void SetItem(int index, object data)
@@ -118,11 +110,26 @@ namespace Drafts.DataView
                     break;
 
                 case NotifyCollectionChangedAction.Reset:
-                    Debug.LogError("Reset not implemented");
+                    Clear();
                     break;
 
                 default:
                     throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private void Clear()
+        {
+            if (_isFixed)
+            {
+                foreach (var view in views)
+                    view.SetData(null);
+            }
+            else
+            {
+                foreach (var view in views)
+                    Destroy(view.gameObject);
+                views.Clear();
             }
         }
     }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Drafts;
 using UnityEngine;
 
 namespace Meowgic.Match
@@ -16,14 +17,16 @@ namespace Meowgic.Match
     /// Everything the battle state need
     /// </summary>
     [Serializable]
-    public partial class Battle
+    public class Battle
     {
         [SerializeField] private Side playerSide;
         [SerializeField] private Side enemySide;
+        [SerializeField] private ObservableList<SpellPreparation> preparation = new();
 
         public Side PlayerSide => playerSide;
         public Side EnemySide => enemySide;
         public Actor Player => PlayerSide.Actors[0];
+        public ObservableList<SpellPreparation> Preparation => preparation;
 
         public Battle(
             IEnumerable<IActor> players, IEnumerable<Catalyst> playerInventory,
@@ -31,19 +34,6 @@ namespace Meowgic.Match
         {
             playerSide = new(this, players, playerInventory);
             enemySide = new(this, enemies, enemyInventory);
-        }
-
-        public void SetupTurn()
-        {
-            var prep = enemySide.Actors.SelectMany(a => a.Ai(a));
-            enemySide.Casts = prep.GetCasts(Player);
-            playerSide.Casts = null;
-        }
-
-        [Obsolete]
-        public void PlayerInput(SpellPreparation[] casts)
-        {
-            playerSide.Casts = casts.GetCasts(enemySide.Actors.First());
         }
 
         public BattleResult GetBattleResult()

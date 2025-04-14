@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Meowgic.Match.Spells
 {
     [Serializable]
-    public class Default : Effect
+    public class Default : EffectScript
     {
         [SerializeField] private int damage;
         [SerializeField] private int heal;

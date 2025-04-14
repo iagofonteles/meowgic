@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Drafts
 {
-    public delegate void ValueChangedHandler<in T>(T newValue, T oldValue);
+    public delegate void ValueChangedHandler<in T>(T oldValue, T newValue);
 
     public interface IObservable
     {
         object Value { get; }
-        event Action<object>  OnChanged;
+        event Action<object> OnChanged;
     }
 
     [Serializable]
@@ -22,7 +22,7 @@ namespace Drafts
         public Observable(T value) => _value = value;
 
         object IObservable.Value => _value;
-        
+
         public T Value
         {
             get => _value;
@@ -34,7 +34,7 @@ namespace Drafts
                 var old = _value;
                 _value = value;
                 OnChanged?.Invoke(value);
-                OnValueChanged?.Invoke(value, old);
+                OnValueChanged?.Invoke(old, value);
             }
         }
 

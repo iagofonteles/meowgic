@@ -12,10 +12,10 @@ namespace Meowgic.Match
     public class Catalyst
     {
         [SerializeField] private CatalystBase catalystBase;
-        [SerializeField] private TypeInstances<Effect> effects = new();
+        [SerializeField] private TypeInstances<EffectScript> effects = new();
 
         public CatalystBase Base => catalystBase;
-        public IList<Effect> Effects => effects;
+        public IList<EffectScript> Effects => effects;
 
         public Catalyst(CatalystBase catalystBase)
         {

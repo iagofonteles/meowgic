@@ -1,11 +1,10 @@
 using Drafts.DataView;
-using UnityEngine;
 
 namespace Meowgic.UI
 {
     public class SpellView : DataView<Spell>
     {
-        [SerializeField] private DatabaseItemSOView baseView;
+        public DatabaseItemSOView baseView;
 
         protected override void Subscribe()
         {

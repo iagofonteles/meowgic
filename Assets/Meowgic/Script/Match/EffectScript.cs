@@ -3,7 +3,7 @@ using System;
 namespace Meowgic.Match
 {
     [Serializable]
-    public abstract class Effect
+    public abstract class EffectScript
     {
         /// <summary>Invoked after all preparations and before any cast.</summary>
         public virtual void OnTurnBegin(int castIndex, TurnArgs turnArgs) { }

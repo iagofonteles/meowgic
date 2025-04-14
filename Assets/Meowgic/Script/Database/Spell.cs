@@ -12,13 +12,13 @@ namespace Meowgic
         [SerializeField] private int speed = 3;
         [SerializeField, Prefab] private Transform prefab;
         [SerializeField] private CatalystBase[] cost;
-        [SerializeField] private TypeInstances<Effect> effects;
+        [SerializeField] private TypeInstances<EffectScript> effects;
 
         public override Sprite Icon => icon ? icon : element.Icon;
         public Element Element => element;
         public int Speed => speed;
         public Transform Prefab => prefab;
         public CatalystBase[] Cost => cost;
-        public IReadOnlyList<Effect> Effects => effects;
+        public IReadOnlyList<EffectScript> Effects => effects;
     }
 }
