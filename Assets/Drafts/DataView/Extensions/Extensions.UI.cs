@@ -38,7 +38,7 @@ namespace Drafts.DataView
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static void TrySetSprite(this Image view, Sprite data)
+        public static void TryOverrideSprite(this Image view, Sprite data)
         {
             if (view) view.overrideSprite = data;
         }

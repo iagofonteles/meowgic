@@ -26,14 +26,16 @@ namespace Meowgic.UI
         {
             displayName.TrySetText(Data.DisplayName);
             description.TrySetText(Data.Description);
-            icon.TrySetSprite(Data.Icon);
+            icon.TryOverrideSprite(Data.Icon);
+            icon.TrySetColor(Color.white);
         }
 
         protected override void Unsubscribe()
         {
             displayName.TrySetText(_defaultName);
             description.TrySetText(_defaultDesc);
-            icon.TrySetSprite(null);
+            icon.TryOverrideSprite(null);
+            icon.TrySetColor(new(1, 1, 1, .5f));
         }
     }
 }
