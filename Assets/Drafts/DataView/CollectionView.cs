@@ -16,11 +16,11 @@ namespace Drafts.DataView
         public T GetView<T>(int index) => views[index].GetComponent<T>();
         public IEnumerable<T> GetViews<T>() => views.Select(v => v.GetComponent<T>());
 
-        private bool _isFixed;
+        private bool? _isFixed;
+        private bool IsFixed => _isFixed ??= views.Count > 0;
 
-        protected virtual void Awake()
+        private void Awake()
         {
-            _isFixed = views.Count > 0;
             if (itemTemplate)
                 itemTemplate.gameObject.SetActive(false);
         }
@@ -30,7 +30,7 @@ namespace Drafts.DataView
             if (Data is INotifyCollectionChanged notifyCollection)
                 notifyCollection.CollectionChanged += CollectionChanged;
 
-            if (_isFixed)
+            if (IsFixed)
             {
                 var items = Data.GetEnumerator();
                 foreach (var view in views)
@@ -53,13 +53,13 @@ namespace Drafts.DataView
             Clear();
         }
 
-        public void SetItem(int index, object data)
+        private void InsertFixed(int index, object data)
         {
             //TODO swift items to right
             views[index].SetData(data);
         }
 
-        public void AddItem(int index, object item)
+        private void AddItem(int index, object item)
         {
             if (!itemTemplate) Debug.LogError("Template missing", this);
             var view = Instantiate(itemTemplate, itemTemplate.transform.parent);
@@ -70,7 +70,7 @@ namespace Drafts.DataView
             views.Insert(index, view);
         }
 
-        public void RemoveItem(int index)
+        private void RemoveItem(int index)
         {
             Destroy(views[index].gameObject);
             views.RemoveAt(index);
@@ -94,7 +94,7 @@ namespace Drafts.DataView
                         : e.NewStartingIndex;
 
                     for (var i = 0; i < e.NewItems.Count; i++)
-                        if(_isFixed) SetItem(index + i, e.NewItems[i]);
+                        if (IsFixed) InsertFixed(index + i, e.NewItems[i]);
                         else AddItem(index + i, e.NewItems[i]);
                     break;
 
@@ -126,7 +126,7 @@ namespace Drafts.DataView
 
         private void Clear()
         {
-            if (_isFixed)
+            if (IsFixed)
             {
                 foreach (var view in views)
                     view.SetData(null);

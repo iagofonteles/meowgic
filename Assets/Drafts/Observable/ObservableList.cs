@@ -22,7 +22,13 @@ namespace Drafts
         public T this[int index]
         {
             get => list[index];
-            set => list[index] = value;
+            set
+            {
+                var old = list[index];
+                list[index] = value;
+                var args = new ChangedArgs(Action.Replace, value, old, index);
+                CollectionChanged?.Invoke(this, args);
+            }
         }
 
         public int Count => list.Count;
