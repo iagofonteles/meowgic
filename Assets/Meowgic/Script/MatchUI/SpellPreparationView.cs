@@ -15,6 +15,7 @@ namespace Meowgic.Match.UI
         public CollectionView AvailableSpells => availableSpells;
         public CollectionView AvailableCatalysts => availableCatalysts;
 
+        
         protected override void Subscribe()
         {
             spell.TrySetData(Data.Spell.Value);

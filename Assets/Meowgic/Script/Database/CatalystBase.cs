@@ -1,3 +1,4 @@
+using Meowgic.Match;
 using UnityEngine;
 
 namespace Meowgic
@@ -11,5 +12,11 @@ namespace Meowgic
         public override Sprite Icon => icon ? icon : element.Icon;
         public Element Element => element;
         public int Grade => grade;
+
+        public bool Compatible(Catalyst other)
+        {
+            if (other?.Base is null) return false;
+            return other.Base.grade >= grade && other.Base.element.Compatible(element);
+        }
     }
 }

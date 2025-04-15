@@ -41,7 +41,7 @@ namespace Meowgic.Match
     public static class SpellPreparationExtensions
     {
         public static SpellCastArgs[] GetCasts(this IEnumerable<SpellPreparation> preparations, Actor target)
-            => preparations.Select(p => new SpellCastArgs
+            => preparations.Where(IsValidCast).Select(p => new SpellCastArgs
                 {
                     caster = p.Caster,
                     target = target,
@@ -50,5 +50,18 @@ namespace Meowgic.Match
                     catalysts = p.Catalysts.Where(c => c is not null).ToList(),
                 }
             ).ToArray();
+
+        public static bool IsValidCast(this SpellPreparation prep)
+        {
+            if (!prep.Spell.Value) return false;
+            for (var i = 0; i < prep.Spell.Value.Cost.Length; i++)
+            {
+                var used = prep.Catalysts[i];
+                var cost = prep.Spell.Value.Cost[i];
+                if (!cost.Compatible(used)) return false;
+            }
+
+            return true;
+        }
     }
 }

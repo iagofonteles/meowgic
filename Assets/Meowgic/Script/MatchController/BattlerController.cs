@@ -8,12 +8,13 @@ namespace Meowgic.Match
     public class BattlerController : MonoBehaviour
     {
         [SerializeField] private Battle battle;
+        [SerializeField] private int drawAmount = 9;
 
-        public void StarBattle(Battle battle)
+        public void StarBattle(Battle newBattle)
         {
-            Game.CurrentBattle = battle;
-            this.battle = battle;
-            battle.PlayerSide.Pool.HandLimit.Value = 5;
+            Game.CurrentBattle = newBattle;
+            battle = newBattle;
+            newBattle.PlayerSide.Pool.HandLimit.Value = drawAmount;
 
             SetupTurn();
         }
@@ -22,7 +23,7 @@ namespace Meowgic.Match
         {
             // player draw
             battle.PlayerSide.Pool.DiscardHand();
-            battle.PlayerSide.Pool.Draw(9);
+            battle.PlayerSide.Pool.Draw(drawAmount);
 
             // enemy preparation
             var prep = battle.EnemySide.Actors.SelectMany(a => a.Ai(a));
@@ -36,7 +37,19 @@ namespace Meowgic.Match
                 battle.Preparation.Add(new SpellPreparation(battle.Player, battle.Preparation));
         }
 
-        public BattleResult ExecuteTurn()
+        public void ConfirmPreparation()
+        {
+            var target = battle.EnemySide.Actors.First(a => !a.IsDead);
+            battle.PlayerSide.Casts = battle.Preparation.GetCasts(target);
+
+            var result = ExecuteTurn();
+            if (result == BattleResult.None)
+                SetupTurn();
+            else
+                Debug.Log(result);
+        }
+
+        private BattleResult ExecuteTurn()
         {
             if (battle.PlayerSide.Casts is null || battle.EnemySide.Casts is null)
                 throw new Exception("Spell cast input missing");

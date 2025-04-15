@@ -9,7 +9,7 @@ namespace Meowgic
     [Serializable]
     public class Database<T> : IDatabase, IEnumerable<T> where T : IDatabaseItem
     {
-        [SerializeField, HideInInspector] private string name;
+        [SerializeField, HideInInspector] private string type;
         [SerializeField, NonReorderable] private List<T> items;
         private Dictionary<string, T> _map;
         public Type Type => typeof(T);
@@ -37,14 +37,14 @@ namespace Meowgic
 
         public Database(IEnumerable newItems)
         {
-            name = typeof(T).Name;
+            type = typeof(T).Name;
             _map = null;
             items = new(newItems.OfType<T>());
         }
 
         IDatabaseItem IDatabase.Get(int index) => Get(index, false);
         IDatabaseItem IDatabase.Get(string name) => Get(name, false);
-        public IEnumerator<T> GetEnumerator() => items.Skip(1).GetEnumerator();
-        IEnumerator IEnumerable.GetEnumerator() => items.Skip(1).GetEnumerator();
+        public IEnumerator<T> GetEnumerator() => items.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => items.GetEnumerator();
     }
 }

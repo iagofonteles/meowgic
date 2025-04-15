@@ -8,5 +8,10 @@ namespace Meowgic
         [SerializeField] private Color color;
 
         public Color Color => color;
+
+        public bool Compatible(Element other)
+        {
+            return this == other;
+        }
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 namespace Meowgic.UI
 {
+    // ReSharper disable once InconsistentNaming
     public class DatabaseItemSOView : DataView<DatabaseItemSO>
     {
         [SerializeField] private TMP_Text displayName;
@@ -20,7 +21,7 @@ namespace Meowgic.UI
         {
             if (displayName) _defaultName = displayName.text;
             if (description) _defaultDesc = description.text;
-            icon.TrySetColor(new(1, 1, 1, .5f));
+            if(!Data) icon.TrySetColor(new(1, 1, 1, .5f));
         }
 
         protected override void Subscribe()
