@@ -14,21 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   searchFolder: Assets/Meowgic/Database
   databases:
-  - rid: 4341673781413281926
-  - rid: 4341673781413281927
-  - rid: 4341673781413281928
-  - rid: 4341673781413281929
-  - rid: 4341673781413281930
-  - rid: 4341673781413281931
-  - rid: 4341673781413281932
-  - rid: 4341673781413281933
+  - rid: 4341673781413281964
+  - rid: 4341673781413281965
+  - rid: 4341673781413281966
+  - rid: 4341673781413281967
+  - rid: 4341673781413281968
+  - rid: 4341673781413281969
+  - rid: 4341673781413281970
+  - rid: 4341673781413281971
   references:
     version: 2
     RefIds:
-    - rid: 4341673781413281926
+    - rid: 4341673781413281964
       type: {class: 'Database`1[[Meowgic.CatalystBase, Meowgic]]', ns: Meowgic, asm: Meowgic}
       data:
-        name: CatalystBase
+        type: CatalystBase
         items:
         - {fileID: 11400000, guid: 86cef6e0d47ca034396081ae19475d11, type: 2}
         - {fileID: 11400000, guid: aebc09f6112a4924795a69ee6e771492, type: 2}
@@ -42,10 +42,10 @@ MonoBehaviour:
         - {fileID: 11400000, guid: b2a26bd78e2afdb4c9fa4ffa67cabe71, type: 2}
         - {fileID: 11400000, guid: e6a0089689504bf4c91e53d4616b3d9b, type: 2}
         - {fileID: 11400000, guid: ac15b07047a9c694ea7d4f066913fa17, type: 2}
-    - rid: 4341673781413281927
+    - rid: 4341673781413281965
       type: {class: 'Database`1[[Meowgic.CatalystRecipe, Meowgic]]', ns: Meowgic, asm: Meowgic}
       data:
-        name: CatalystRecipe
+        type: CatalystRecipe
         items:
         - {fileID: 11400000, guid: 189b5e5b1a553f14195442bddeee5ee7, type: 2}
         - {fileID: 11400000, guid: 25dd293193e1b454e8de52df1bed7ca3, type: 2}
@@ -55,15 +55,16 @@ MonoBehaviour:
         - {fileID: 11400000, guid: f1af04c2120c22a409aa2279ec825f2d, type: 2}
         - {fileID: 11400000, guid: ee655de886c3abd41919efb576a607bd, type: 2}
         - {fileID: 11400000, guid: 852bbd6e4c99e7f46afebf1aefb0e0d1, type: 2}
-    - rid: 4341673781413281928
+    - rid: 4341673781413281966
       type: {class: 'Database`1[[Meowgic.Effect, Meowgic]]', ns: Meowgic, asm: Meowgic}
       data:
-        name: Effect
-        items: []
-    - rid: 4341673781413281929
+        type: Effect
+        items:
+        - {fileID: 11400000, guid: 321899bd5843cda4e9afdc466eb17eca, type: 2}
+    - rid: 4341673781413281967
       type: {class: 'Database`1[[Meowgic.Element, Meowgic]]', ns: Meowgic, asm: Meowgic}
       data:
-        name: Element
+        type: Element
         items:
         - {fileID: 11400000, guid: d102708db256ae8478101e32fdc74e66, type: 2}
         - {fileID: 11400000, guid: 2828b20c6c9f5ad47a2a460d00b1602f, type: 2}
@@ -71,29 +72,31 @@ MonoBehaviour:
         - {fileID: 11400000, guid: d7cc344808226f047aa091cbc207ddc4, type: 2}
         - {fileID: 11400000, guid: 0aaf4416c44f55a439248ca78b4b61ab, type: 2}
         - {fileID: 11400000, guid: e8a3cca64aea9494499ae8dd310ffa72, type: 2}
-    - rid: 4341673781413281930
+    - rid: 4341673781413281968
       type: {class: 'Database`1[[Meowgic.Enemy, Meowgic]]', ns: Meowgic, asm: Meowgic}
       data:
-        name: Enemy
+        type: Enemy
         items:
         - {fileID: 11400000, guid: a14315db1aa457d4f80f9dc58b44b213, type: 2}
-    - rid: 4341673781413281931
+    - rid: 4341673781413281969
       type: {class: 'Database`1[[Meowgic.Reagent, Meowgic]]', ns: Meowgic, asm: Meowgic}
       data:
-        name: Reagent
+        type: Reagent
         items:
         - {fileID: 11400000, guid: afeeb0460dec18e4ea868f50e3ecf40a, type: 2}
         - {fileID: 11400000, guid: 259b05cd10acac64680f3311b454e5a2, type: 2}
         - {fileID: 11400000, guid: 3ade03b093a0f4748b27848c8b7ece48, type: 2}
-    - rid: 4341673781413281932
+    - rid: 4341673781413281970
       type: {class: 'Database`1[[Meowgic.Spell, Meowgic]]', ns: Meowgic, asm: Meowgic}
       data:
-        name: Spell
+        type: Spell
         items:
         - {fileID: 11400000, guid: 8211e902f8d23cc4e8b73c524e96154c, type: 2}
-    - rid: 4341673781413281933
+        - {fileID: 11400000, guid: fc2210ad51446df42a61e4b0556d7934, type: 2}
+    - rid: 4341673781413281971
       type: {class: 'Database`1[[Meowgic.SpellRecipe, Meowgic]]', ns: Meowgic, asm: Meowgic}
       data:
-        name: SpellRecipe
+        type: SpellRecipe
         items:
         - {fileID: 11400000, guid: 6ae41decd8d5bd6429320c21151b8f2f, type: 2}
+        - {fileID: 11400000, guid: c248f906b8c62e14caad8930bf5e2a23, type: 2}

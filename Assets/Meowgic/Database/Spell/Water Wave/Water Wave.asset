@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4c35698ce02456fbff8722e2e179a83, type: 3}
-  m_Name: Fire Ball
+  m_Name: Water Wave
   m_EditorClassIdentifier: 
   displayName: 
-  icon: {fileID: 21300000, guid: 70e92df91699f664ab5bad7bf4723022, type: 3}
+  icon: {fileID: 21300000, guid: 3c9805506cdde8f44889fc034ab0097e, type: 3}
   element: {fileID: 11400000, guid: 271073c85cdfcc7479546cf9f947ba3b, type: 2}
   speed: 3
   prefab: {fileID: 0}
   cost:
-  - {fileID: 11400000, guid: ca1c185bab28f5a48932f2db7ff04b86, type: 2}
-  - {fileID: 11400000, guid: ca1c185bab28f5a48932f2db7ff04b86, type: 2}
+  - {fileID: 11400000, guid: de273f3f8486c524394bea1ab151ff4c, type: 2}
+  - {fileID: 11400000, guid: de273f3f8486c524394bea1ab151ff4c, type: 2}
   effects:
     list:
     - rid: 4341673770565238865
