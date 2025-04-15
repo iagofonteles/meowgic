@@ -55,11 +55,13 @@ namespace Drafts.DataView
 
         public void SetItem(int index, object data)
         {
+            //TODO swift items to right
             views[index].SetData(data);
         }
 
         public void AddItem(int index, object item)
         {
+            if (!itemTemplate) Debug.LogError("Template missing", this);
             var view = Instantiate(itemTemplate, itemTemplate.transform.parent);
             view.transform.SetSiblingIndex(index + 1); // 0 is the template
             view.gameObject.SetActive(true);
@@ -92,7 +94,8 @@ namespace Drafts.DataView
                         : e.NewStartingIndex;
 
                     for (var i = 0; i < e.NewItems.Count; i++)
-                        AddItem(index + i, e.NewItems[i]);
+                        if(_isFixed) SetItem(index + i, e.NewItems[i]);
+                        else AddItem(index + i, e.NewItems[i]);
                     break;
 
                 case NotifyCollectionChangedAction.Move:

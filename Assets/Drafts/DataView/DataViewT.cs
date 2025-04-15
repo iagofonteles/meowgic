@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace Drafts.DataView
 {
     public abstract class DataView<T> : DataView
