@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using Drafts;
+using Meowgic.Match.UI;
 using UnityEngine;
 
 namespace Meowgic.Match
@@ -18,8 +20,10 @@ namespace Meowgic.Match
 
         public ObservableList<SpellPreparation> Preparation { get; }
         public Actor Caster => caster;
-        public Observable<Spell> Spell => spell;
-        public ObservableList<Catalyst> Catalysts => catalysts;
+        public Drafts.IObservable<Spell> Spell => spell;
+        public IObservableList<Catalyst> Catalysts => catalysts;
+
+        private ObservableList<Catalyst> Hand => caster.Side.Pool.Hand;
 
         public int GetIndex() => Preparation.IndexOf(this);
 
@@ -27,21 +31,42 @@ namespace Meowgic.Match
         {
             caster = actor;
             Preparation = preparation;
-            spell.OnChanged += UpdateCatalysts;
         }
 
-        private void UpdateCatalysts(object value)
+        public void SetSpell(Spell value)
         {
+            if (spell.Value == value) return;
+
+            // refund catalysts
+            foreach (var c in catalysts)
+                if (c != null)
+                    Hand.Add(c);
+
             catalysts.Clear();
-            if (value is not Spell s) return;
-            foreach (var _ in s.Cost) catalysts.Add(null);
+            if (value)
+                foreach (var _ in value.Cost)
+                    catalysts.Add(null);
+            
+            spell.Value = value;
+        }
+
+        public void SetCatalyst(int index, Catalyst value)
+        {
+            if (catalysts[index] != null)
+                Hand.Add(catalysts[index]);
+
+            Hand.Remove(value);
+            catalysts[index] = value;
         }
     }
 
     public static class SpellPreparationExtensions
     {
-        public static SpellCastArgs[] GetCasts(this IEnumerable<SpellPreparation> preparations, Actor target)
-            => preparations.Where(IsValidCast).Select(p => new SpellCastArgs
+        public static SpellCastArgs[] GetCasts(this IEnumerable<SpellPreparation> preparations, Actor target,
+            bool validOnly)
+        {
+            if (validOnly) preparations = preparations.Where(IsValidCast);
+            return preparations.Select(p => new SpellCastArgs
                 {
                     caster = p.Caster,
                     target = target,
@@ -50,6 +75,7 @@ namespace Meowgic.Match
                     catalysts = p.Catalysts.Where(c => c is not null).ToList(),
                 }
             ).ToArray();
+        }
 
         public static bool IsValidCast(this SpellPreparation prep)
         {

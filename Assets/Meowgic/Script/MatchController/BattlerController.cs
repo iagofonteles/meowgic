@@ -27,7 +27,7 @@ namespace Meowgic.Match
 
             // enemy preparation
             var prep = battle.EnemySide.Actors.SelectMany(a => a.Ai(a));
-            battle.EnemySide.Casts = prep.GetCasts(battle.Player);
+            battle.EnemySide.Casts = prep.GetCasts(battle.Player, false);
 
             // player preparation
             battle.PlayerSide.Casts = null;
@@ -39,8 +39,13 @@ namespace Meowgic.Match
 
         public void ConfirmPreparation()
         {
+            // refund unused catalysts
+            foreach (var prep in battle.Preparation.Where(p => !p.IsValidCast()))
+                battle.PlayerSide.Pool.Hand.AddRange(prep.Catalysts);
+
+            // get valid casts
             var target = battle.EnemySide.Actors.First(a => !a.IsDead);
-            battle.PlayerSide.Casts = battle.Preparation.GetCasts(target);
+            battle.PlayerSide.Casts = battle.Preparation.GetCasts(target, true);
 
             var result = ExecuteTurn();
             if (result == BattleResult.None)

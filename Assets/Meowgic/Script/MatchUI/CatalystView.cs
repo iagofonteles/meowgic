@@ -1,3 +1,4 @@
+using System;
 using Drafts.DataView;
 using Meowgic.UI;
 using UnityEngine;
@@ -8,6 +9,14 @@ namespace Meowgic.Match.UI
     {
         [SerializeField] private CatalystBaseView baseView;
         [SerializeField] private CollectionView effects;
+        [SerializeField] private GameObject selection;
+
+        public GameObject Selection => selection;
+
+        private void Awake()
+        {
+            Selection.TrySetActive(false);
+        }
 
         protected override void Subscribe()
         {

@@ -15,34 +15,36 @@ namespace Meowgic.Match.UI
         public CollectionView AvailableSpells => availableSpells;
         public CollectionView AvailableCatalysts => availableCatalysts;
 
-        
         protected override void Subscribe()
         {
-            spell.TrySetData(Data.Spell.Value);
-            catalysts.TrySetData(Data.Catalysts);
-
             Data.Spell.OnChanged += SpellChanged;
             Data.Spell.OnChanged += spell.TrySetData;
+
+            SpellChanged(null);
         }
 
         protected override void Unsubscribe()
         {
-            spell.TrySetData(null);
-            catalysts.TrySetData(null);
-
             Data.Spell.OnChanged -= SpellChanged;
             Data.Spell.OnChanged -= spell.TrySetData;
+
+            spell.TrySetData(null);
+            catalysts.TrySetActive(false);
         }
 
-        private void SpellChanged(object obj)
+        private void SpellChanged(object _)
         {
+            spell.TrySetData(Data.Spell.Value);
             catalysts.TrySetData(Data.Catalysts);
-            for (var i = 0; i < Data.Spell.Value.Cost.Length; i++)
-            {
-                var baseCatalyst = Data.Spell.Value.Cost[i];
-                var icon = catalysts.GetView<DatabaseItemSOView>(i)?.Icon;
-                if (icon) icon.sprite = baseCatalyst.Icon;
-            }
+            catalysts.TrySetActive(Data.Spell.Value);
+
+            if (Data?.Spell.Value)
+                for (var i = 0; i < Data.Spell.Value.Cost.Length; i++)
+                {
+                    var baseCatalyst = Data.Spell.Value.Cost[i];
+                    var icon = catalysts.GetView<DatabaseItemSOView>(i)?.Icon;
+                    if (icon) icon.sprite = baseCatalyst.Icon;
+                }
         }
     }
 }
