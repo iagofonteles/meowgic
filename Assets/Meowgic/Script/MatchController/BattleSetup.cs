@@ -12,7 +12,7 @@ namespace Meowgic.Match
         public Player player;
         public List<Enemy> enemies;
 
-        public void Awake()
+        public void StartBattle()
         {
             var battle = new Battle(
                 new IActor[] { player }, player.Inventory,

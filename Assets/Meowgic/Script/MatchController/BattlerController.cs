@@ -41,7 +41,7 @@ namespace Meowgic.Match
         {
             // refund unused catalysts
             foreach (var prep in battle.Preparation.Where(p => !p.IsValidCast()))
-                battle.PlayerSide.Pool.Hand.AddRange(prep.Catalysts);
+                battle.PlayerSide.Pool.Hand.AddRange(prep.Catalysts.Where(c => c != null));
 
             // get valid casts
             var target = battle.EnemySide.Actors.First(a => !a.IsDead);
@@ -105,7 +105,8 @@ namespace Meowgic.Match
 
         private static IEnumerable<EffectScript> EnumerateEffects(SpellCastArgs cast)
         {
-            return cast.catalysts.SelectMany(c => c.Effects.Select(e => e.Script)).Concat(cast.spell.Effects);
+            return cast.catalysts.SelectMany(c => c.Effects).Where(e => e)
+                .Select(e => e.Script).Concat(cast.spell.Effects);
         }
     }
 }

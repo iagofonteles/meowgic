@@ -1,0 +1,20 @@
+{
+    "name": "MeowgicEditor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:80d4aced83f2a1744a79fa32f1f43c9f",
+        "GUID:d0996845752d34c43a832c7a36c4ac75",
+        "GUID:70aee05a1c736a746a22f7f1a9db08e0"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

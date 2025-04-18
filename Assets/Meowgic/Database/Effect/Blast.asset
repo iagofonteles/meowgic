@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86d524c1bb7343a3a03bd241b71a24ee, type: 3}
-  m_Name: Restore
+  m_Name: Blast
   m_EditorClassIdentifier: 
   displayName: 
-  icon: {fileID: 21300000, guid: 046f821c76a004e4c91b9f27ee906194, type: 3}
+  icon: {fileID: 21300000, guid: 7972dd97521bb1c44ba8e3774391b996, type: 3}
   script:
     rid: 4341673781413281951
   references:
@@ -22,7 +22,7 @@ MonoBehaviour:
     - rid: 4341673781413281951
       type: {class: Default, ns: Meowgic.Match.Spells, asm: Meowgic}
       data:
-        damage: 0
-        heal: 30
+        damage: 10
+        heal: 0
         shield: 0
         area: 0
