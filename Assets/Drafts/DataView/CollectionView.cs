@@ -13,7 +13,7 @@ namespace Drafts.DataView
         [SerializeField] private List<DataView> views = new();
 
         public IReadOnlyList<DataView> Views => views;
-        public T GetView<T>(int index) => views[index].GetComponent<T>();
+        public T GetView<T>(int index) => index < views.Count ? views[index].GetComponent<T>() : default;
         public IEnumerable<T> GetViews<T>() => views.Select(v => v.GetComponent<T>());
 
         private bool? _isFixed;

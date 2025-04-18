@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
 using UnityEngine;
 
 namespace Drafts
@@ -9,11 +10,13 @@ namespace Drafts
     using Action = NotifyCollectionChangedAction;
     using ChangedArgs = NotifyCollectionChangedEventArgs;
 
+    public interface IObservableList<out T> : IReadOnlyList<T>, INotifyCollectionChanged { }
+
     /// <summary>
     /// Made this cause ObservableCollection inst serializable
     /// </summary>
     [Serializable]
-    public class ObservableList<T> : IList<T>, IReadOnlyList<T>, INotifyCollectionChanged
+    public class ObservableList<T> : IList<T>, IObservableList<T>
     {
         [SerializeField] private List<T> list;
 
@@ -44,6 +47,14 @@ namespace Drafts
 
         public ObservableList() => list = new();
         public ObservableList(IEnumerable<T> items) => list = new(items);
+
+        public void AddRange(IEnumerable<T> values)
+        {
+            var v = values.ToList();
+            var args = new ChangedArgs(Action.Add, v, Count);
+            list.AddRange(v);
+            CollectionChanged?.Invoke(this, args);
+        }
 
         public void Insert(int index, T item)
         {
