@@ -19,7 +19,7 @@ MonoBehaviour:
   prefab: {fileID: 0}
   cost:
   - {fileID: 11400000, guid: ca1c185bab28f5a48932f2db7ff04b86, type: 2}
-  - {fileID: 11400000, guid: ca1c185bab28f5a48932f2db7ff04b86, type: 2}
+  - {fileID: 11400000, guid: 825786834190a3940b5dbfca56c42d5f, type: 2}
   effects:
     list:
     - rid: 4341673770565238865

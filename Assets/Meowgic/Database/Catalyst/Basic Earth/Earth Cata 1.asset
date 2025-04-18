@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Earth Cata 1
   m_EditorClassIdentifier: 
   displayName: 
-  icon: {fileID: 21300000, guid: 805736230f06ac449a72b0ecb951e522, type: 3}
+  icon: {fileID: 21300000, guid: 76dc034602906554494c8e947f78ce15, type: 3}
   element: {fileID: 11400000, guid: 2828b20c6c9f5ad47a2a460d00b1602f, type: 2}
   grade: 1

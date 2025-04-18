@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Fire Cata 3
   m_EditorClassIdentifier: 
   displayName: 
-  icon: {fileID: 21300000, guid: 44dc65116207f4b46aa85443dae5ad96, type: 3}
+  icon: {fileID: 21300000, guid: 929b825440b94374d8aea0d45ba3932b, type: 3}
   element: {fileID: 11400000, guid: 271073c85cdfcc7479546cf9f947ba3b, type: 2}
   grade: 3
