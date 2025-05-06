@@ -11,6 +11,7 @@ namespace Meowgic
 
         public bool Compatible(Element other)
         {
+            if (name == "Any") return other;
             return this == other;
         }
     }

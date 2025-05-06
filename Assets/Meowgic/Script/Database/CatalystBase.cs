@@ -15,8 +15,8 @@ namespace Meowgic
 
         public bool Compatible(Catalyst other)
         {
-            if (other?.Base is null) return false;
-            return other.Base.grade >= grade && other.Base.element.Compatible(element);
+            if (!other?.Base) return false;
+            return other.Base.grade >= grade && element.Compatible(other.Base.element);
         }
     }
 }

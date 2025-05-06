@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
 using Drafts;
-using Meowgic.Match.UI;
 using UnityEngine;
 
 namespace Meowgic.Match
@@ -62,8 +60,8 @@ namespace Meowgic.Match
 
     public static class SpellPreparationExtensions
     {
-        public static SpellCastArgs[] GetCasts(this IEnumerable<SpellPreparation> preparations, Actor target,
-            bool validOnly)
+        public static SpellCastArgs[] GetCasts(this IEnumerable<SpellPreparation> preparations
+            , Actor target, bool validOnly)
         {
             if (validOnly) preparations = preparations.Where(IsValidCast);
             return preparations.Select(p => new SpellCastArgs

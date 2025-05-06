@@ -15,5 +15,6 @@ namespace Meowgic.Match
         public int heal;
         public int shield;
         public Action<SpellCastArgs> Effect;
+        public bool cancelled;
     }
 }

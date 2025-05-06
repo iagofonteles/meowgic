@@ -68,6 +68,8 @@ namespace Meowgic.Match
 
             foreach (var (cast, index, turnArgs) in EnumerateCasts(player, enemy))
             {
+                if (cast.cancelled) continue;
+                
                 BattleMath.Heal(cast.caster.Side.Actors, cast.heal);
                 BattleMath.Shield(cast.caster.Side.Actors, cast.shield);
                 BattleMath.Damage(cast.caster, cast.target, cast.damage);

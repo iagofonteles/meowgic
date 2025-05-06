@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Meowgic.Match.Spells
+namespace Meowgic.Match.EffectScripts
 {
     [Serializable]
     public class Default : EffectScript
@@ -19,6 +19,7 @@ namespace Meowgic.Match.Spells
             args.damage += damage;
             args.heal += heal;
             args.shield += shield;
+            //TODO area
         }
     }
 }

@@ -5,13 +5,13 @@ namespace Meowgic.Match
     public class TurnArgs
     {
         public IReadOnlyList<SpellCastArgs> AllyCasts { get; }
-        public IReadOnlyList<SpellCastArgs> EnemyCast { get; }
+        public IReadOnlyList<SpellCastArgs> EnemyCasts { get; }
 
         public TurnArgs(IReadOnlyList<SpellCastArgs> allyCasts,
-            IReadOnlyList<SpellCastArgs> enemyCast)
+            IReadOnlyList<SpellCastArgs> enemyCasts)
         {
             AllyCasts = allyCasts;
-            EnemyCast = enemyCast;
+            EnemyCasts = enemyCasts;
         }
     }
 }
