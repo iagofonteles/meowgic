@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4c35698ce02456fbff8722e2e179a83, type: 3}
-  m_Name: Fire Ball
+  m_Name: Fire Claw
   m_EditorClassIdentifier: 
   displayName: 
+  description: 
   icon: {fileID: 21300000, guid: 70e92df91699f664ab5bad7bf4723022, type: 3}
   element: {fileID: 11400000, guid: 271073c85cdfcc7479546cf9f947ba3b, type: 2}
-  speed: 3
+  speed: 2
   prefab: {fileID: 0}
   cost:
-  - {fileID: 11400000, guid: ca1c185bab28f5a48932f2db7ff04b86, type: 2}
-  - {fileID: 11400000, guid: 825786834190a3940b5dbfca56c42d5f, type: 2}
+  - {fileID: 11400000, guid: ff9bab0ee1dd9494a82d2cfb001c3b24, type: 2}
   effects:
     list:
-    - rid: 4341673770565238865
+    - rid: 9148660361134080107
   references:
     version: 2
     RefIds:
-    - rid: 4341673770565238865
-      type: {class: Default, ns: Meowgic.Match.Spells, asm: Meowgic}
+    - rid: 9148660361134080107
+      type: {class: Default, ns: Meowgic.Match.EffectScripts, asm: Meowgic}
       data:
         damage: 10
         heal: 0

@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: Blast
   m_EditorClassIdentifier: 
   displayName: 
+  description: Spell damage +10
   icon: {fileID: 21300000, guid: 7972dd97521bb1c44ba8e3774391b996, type: 3}
   script:
-    rid: 4341673781413281951
+    rid: 9148660361134080092
   references:
     version: 2
     RefIds:
-    - rid: 4341673781413281951
-      type: {class: Default, ns: Meowgic.Match.Spells, asm: Meowgic}
+    - rid: 9148660361134080092
+      type: {class: Default, ns: Meowgic.Match.EffectScripts, asm: Meowgic}
       data:
         damage: 10
         heal: 0

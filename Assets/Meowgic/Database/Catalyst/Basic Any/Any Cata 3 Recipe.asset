@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9511b0fb6a514427b044cef334fc5877, type: 3}
-  m_Name: Fire Ball Recipe
+  m_Script: {fileID: 11500000, guid: 5c036cb6faff4c26bd9f95d55feebfb5, type: 3}
+  m_Name: Any Cata 3 Recipe
   m_EditorClassIdentifier: 
   displayName: 
+  description: 
   icon: {fileID: 0}
-  result: {fileID: 11400000, guid: 8211e902f8d23cc4e8b73c524e96154c, type: 2}
+  result: {fileID: 11400000, guid: b0cdf20f417f531449fdb182629c8b25, type: 2}
   ingredients:
-  - {fileID: 11400000, guid: ca1c185bab28f5a48932f2db7ff04b86, type: 2}
-  - {fileID: 11400000, guid: ca1c185bab28f5a48932f2db7ff04b86, type: 2}
+  - {fileID: 11400000, guid: 3f9127bfe2a71cd42a3c86f6e596c583, type: 2}
+  - {fileID: 11400000, guid: 3f9127bfe2a71cd42a3c86f6e596c583, type: 2}

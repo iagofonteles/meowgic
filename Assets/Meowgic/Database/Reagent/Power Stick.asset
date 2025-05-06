@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f6195b645d84570b5d58ea6df4f643b, type: 3}
-  m_Name: Cat Bone
+  m_Name: Power Stick
   m_EditorClassIdentifier: 
   displayName: 
-  icon: {fileID: 21300000, guid: 844a1050d03ba5046bfb86af34a81e47, type: 3}
+  description: 
+  icon: {fileID: 21300000, guid: 0e1ccb64303778e4081913a6d9cca677, type: 3}
+  effect: {fileID: 11400000, guid: c75ce65e03cf219418f8c86bff2a952d, type: 2}

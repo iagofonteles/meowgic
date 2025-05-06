@@ -13,23 +13,16 @@ MonoBehaviour:
   m_Name: Water Wave
   m_EditorClassIdentifier: 
   displayName: 
+  description: 
   icon: {fileID: 21300000, guid: 3c9805506cdde8f44889fc034ab0097e, type: 3}
   element: {fileID: 11400000, guid: 271073c85cdfcc7479546cf9f947ba3b, type: 2}
-  speed: 3
+  speed: 2
   prefab: {fileID: 0}
   cost:
   - {fileID: 11400000, guid: de273f3f8486c524394bea1ab151ff4c, type: 2}
   - {fileID: 11400000, guid: de273f3f8486c524394bea1ab151ff4c, type: 2}
   effects:
-    list:
-    - rid: 4341673770565238865
+    list: []
   references:
     version: 2
-    RefIds:
-    - rid: 4341673770565238865
-      type: {class: Default, ns: Meowgic.Match.Spells, asm: Meowgic}
-      data:
-        damage: 10
-        heal: 0
-        shield: 0
-        area: 0
+    RefIds: []

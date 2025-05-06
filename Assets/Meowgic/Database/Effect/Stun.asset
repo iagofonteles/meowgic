@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86d524c1bb7343a3a03bd241b71a24ee, type: 3}
-  m_Name: Restore
+  m_Name: Stun
   m_EditorClassIdentifier: 
   displayName: 
-  description: 
-  icon: {fileID: 21300000, guid: 046f821c76a004e4c91b9f27ee906194, type: 3}
+  description: Cancel next enemy cast
+  icon: {fileID: 21300000, guid: 844a1050d03ba5046bfb86af34a81e47, type: 3}
   script:
-    rid: 9148660361134080095
+    rid: 9148660361134080114
   references:
     version: 2
     RefIds:
-    - rid: 9148660361134080095
-      type: {class: Default, ns: Meowgic.Match.EffectScripts, asm: Meowgic}
+    - rid: 9148660361134080114
+      type: {class: CancelCast, ns: Meowgic.Match.EffectScripts, asm: Meowgic}
       data:
-        damage: 0
-        heal: 10
-        shield: 0
-        area: 0
+        affectedCasts:
+          targetEnemy: 1
+          castOffset: 0
+          affectedCasts: 1
