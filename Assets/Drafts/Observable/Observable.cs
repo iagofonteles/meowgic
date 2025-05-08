@@ -21,7 +21,7 @@ namespace Drafts
     }
 
     [Serializable]
-    public class Observable<T> : IObservable<T>
+    public class Observable<T> : IObservable<T>, IDisposable
     {
         [SerializeField] private T value;
 
@@ -50,5 +50,12 @@ namespace Drafts
         public event Action<object> OnChanged;
         public event Action<T> OnValueChanged;
         public event ValueChangedHandler<T> OnValueChanged2;
+
+        public void Dispose()
+        {
+            OnChanged = null;
+            OnValueChanged = null;
+            OnValueChanged2 = null;
+        }
     }
 }

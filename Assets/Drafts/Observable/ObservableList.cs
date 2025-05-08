@@ -16,7 +16,7 @@ namespace Drafts
     /// Made this cause ObservableCollection inst serializable
     /// </summary>
     [Serializable]
-    public class ObservableList<T> : IList<T>, IObservableList<T>
+    public class ObservableList<T> : IList<T>, IObservableList<T>, IDisposable
     {
         [SerializeField] private List<T> list;
 
@@ -51,7 +51,7 @@ namespace Drafts
         public void AddRange(IEnumerable<T> values)
         {
             var v = values.ToList();
-            var args = new ChangedArgs(Action.Add, v, Count);
+            var args = new ChangedArgs(Action.Add, v, v.Count);
             list.AddRange(v);
             CollectionChanged?.Invoke(this, args);
         }
@@ -93,6 +93,11 @@ namespace Drafts
             CollectionChanged?.Invoke(this, args);
             args = new ChangedArgs(Action.Replace, list[indexA], list[indexB], indexB);
             CollectionChanged?.Invoke(this, args);
+        }
+
+        public void Dispose()
+        {
+            CollectionChanged = null;
         }
     }
 }
