@@ -12,7 +12,7 @@ namespace Meowgic.Match.EffectScripts
         [SerializeField] private float multiplier = 1;
         [SerializeField] private AffectedCasts affectedCasts;
 
-        public override void OnTurnBegin(int castIndex, TurnArgs turnArgs)
+        public override void Setup(int castIndex, TurnArgs turnArgs)
         {
             foreach (var castArgs in affectedCasts.Resolve(castIndex, turnArgs))
             {
