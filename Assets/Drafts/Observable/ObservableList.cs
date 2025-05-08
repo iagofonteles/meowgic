@@ -51,7 +51,7 @@ namespace Drafts
         public void AddRange(IEnumerable<T> values)
         {
             var v = values.ToList();
-            var args = new ChangedArgs(Action.Add, v, v.Count);
+            var args = new ChangedArgs(Action.Add, v, list.Count);
             list.AddRange(v);
             CollectionChanged?.Invoke(this, args);
         }

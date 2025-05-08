@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Meowgic.Match
 {
     /// <summary>
-    /// The instance of a CatalystBase that player can be modify
+    /// The instance of a CatalystBase that player can be modified
     /// </summary>
     [Serializable]
     public class Catalyst
@@ -20,5 +20,7 @@ namespace Meowgic.Match
         {
             this.catalystBase = catalystBase;
         }
+
+        public static implicit operator bool(Catalyst c) => c != null && c.catalystBase;
     }
 }

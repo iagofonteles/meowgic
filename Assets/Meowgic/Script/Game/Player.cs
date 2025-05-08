@@ -19,9 +19,6 @@ namespace Meowgic
         public int CastAmount => 3;
         public IEnumerable<Spell> Spells => Game.Database.GetAll<Spell>();
 
-        public IEnumerable<SpellPreparation> Ai(Actor actor)
-        {
-            yield break;
-        }
+        public Spell Ai(Actor actor) => throw new InvalidOperationException();
     }
 }

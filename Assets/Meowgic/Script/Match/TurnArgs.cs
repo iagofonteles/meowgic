@@ -1,17 +1,13 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Meowgic.Match
 {
     public class TurnArgs
     {
-        public IReadOnlyList<SpellCastArgs> AllyCasts { get; }
-        public IReadOnlyList<SpellCastArgs> EnemyCasts { get; }
-
-        public TurnArgs(IReadOnlyList<SpellCastArgs> allyCasts,
-            IReadOnlyList<SpellCastArgs> enemyCasts)
-        {
-            AllyCasts = allyCasts;
-            EnemyCasts = enemyCasts;
-        }
+        private readonly Side side;
+        public IEnumerable<SpellCastArgs> AllyCasts => side.Casts.Where(BattleUtility.IsValidCast);
+        public IEnumerable<SpellCastArgs> EnemyCasts => side.OtherSide.Casts.Where(BattleUtility.IsValidCast);
+        public TurnArgs(Side side) => this.side = side;
     }
 }

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -25,27 +24,32 @@ namespace Meowgic.Match
             battle.PlayerSide.Pool.DiscardHand();
             battle.PlayerSide.Pool.Draw(drawAmount);
 
-            // enemy preparation
-            var prep = battle.EnemySide.Actors.SelectMany(a => a.Ai(a));
-            battle.EnemySide.Casts = prep.GetCasts(battle.Player, false);
+            // reset preparation
+            battle.ResetPreparations();
 
-            // player preparation
-            battle.PlayerSide.Casts = null;
-            battle.Preparation.Clear();
-            var amount = battle.PlayerSide.Actors.Sum(a => a.CastAmount.Value);
-            for (var i = 0; i < amount; i++)
-                battle.Preparation.Add(new SpellPreparation(battle.Player, battle.Preparation));
+            // enemy preparation
+            var index = 0;
+            foreach (var actor in battle.EnemySide.Actors)
+            {
+                for (var i = 0; i < actor.CastAmount.Value; i++)
+                {
+                    var args = battle.EnemySide.Casts[index++];
+                    args.spell = actor.Ai(actor);
+                    args.target = battle.Player;
+                }
+            }
         }
 
         public void ConfirmPreparation()
         {
             // refund unused catalysts
-            foreach (var prep in battle.Preparation.Where(p => !p.IsValidCast()))
-                battle.PlayerSide.Pool.Hand.AddRange(prep.Catalysts.Where(c => c != null));
+            foreach (var args in battle.PlayerSide.Casts.Where(c => !c.IsValidCast()))
+                battle.PlayerSide.Pool.Hand.AddRange(args.catalysts.Where(c => c));
 
-            // get valid casts
+            // set target
             var target = battle.EnemySide.Actors.First(a => !a.IsDead);
-            battle.PlayerSide.Casts = battle.Preparation.GetCasts(target, true);
+            foreach (var args in battle.PlayerSide.Casts)
+                args.target = target;
 
             var result = ExecuteTurn();
             if (result == BattleResult.None)
@@ -59,56 +63,25 @@ namespace Meowgic.Match
             if (battle.PlayerSide.Casts is null || battle.EnemySide.Casts is null)
                 throw new Exception("Spell cast input missing");
 
-            var player = new TurnArgs(battle.PlayerSide.Casts, battle.EnemySide.Casts);
-            var enemy = new TurnArgs(battle.EnemySide.Casts, battle.PlayerSide.Casts);
+            battle.RecalculateCasts();
 
-            foreach (var (cast, index, turnArgs) in EnumerateCasts(player, enemy))
-            foreach (var effect in EnumerateEffects(cast))
-                effect.OnTurnBegin(index, turnArgs);
-
-            foreach (var (cast, index, turnArgs) in EnumerateCasts(player, enemy))
+            foreach (var (cast, index, turnArgs) in battle.EnumerateCasts())
             {
                 if (cast.cancelled) continue;
-                
-                BattleMath.Heal(cast.caster.Side.Actors, cast.heal);
-                BattleMath.Shield(cast.caster.Side.Actors, cast.shield);
-                BattleMath.Damage(cast.caster, cast.target, cast.damage);
 
-                foreach (var effect in EnumerateEffects(cast))
+                foreach (var effect in cast.EnumerateEffects())
                     effect.OnTurnExecute(index, turnArgs);
+
+                BattleMath.Heal(cast.Caster.Side.Actors, cast.heal);
+                BattleMath.Shield(cast.Caster.Side.Actors, cast.shield);
+                BattleMath.Damage(cast.Caster, cast.target, cast.damage);
             }
 
-            foreach (var (cast, index, turnArgs) in EnumerateCasts(player, enemy))
-            foreach (var effect in EnumerateEffects(cast))
+            foreach (var (cast, index, turnArgs) in battle.EnumerateCasts())
+            foreach (var effect in cast.EnumerateEffects())
                 effect.OnTurnEnd(index, turnArgs);
 
             return battle.GetBattleResult();
-        }
-
-        private static IEnumerable<(SpellCastArgs, int, TurnArgs)> EnumerateCasts(TurnArgs player, TurnArgs enemy)
-        {
-            var castIndex = 0;
-            Execute:
-
-            var pCast = player.AllyCasts.ElementAtOrDefault(castIndex);
-            var eCast = enemy.AllyCasts.ElementAtOrDefault(castIndex);
-            if (pCast is null && eCast is null) yield break;
-
-            var playerFirst = (pCast?.speed ?? 0) >= (eCast?.speed ?? 0);
-            var (a, aArgs) = playerFirst ? (pCast, player) : (eCast, enemy);
-            var (b, bArgs) = playerFirst ? (eCast, enemy) : (pCast, player);
-
-            if (a is not null) yield return (a, castIndex, aArgs);
-            if (b is not null) yield return (b, castIndex, bArgs);
-
-            castIndex++;
-            goto Execute;
-        }
-
-        private static IEnumerable<EffectScript> EnumerateEffects(SpellCastArgs cast)
-        {
-            return cast.catalysts.SelectMany(c => c.Effects).Where(e => e)
-                .Select(e => e.Script).Concat(cast.spell.Effects);
         }
     }
 }

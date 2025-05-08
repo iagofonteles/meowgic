@@ -13,7 +13,7 @@ namespace Meowgic.Match
         public int MaxHealth { get; }
         public int CastAmount { get; }
         public IEnumerable<Spell> Spells { get; }
-        IEnumerable<SpellPreparation> Ai(Actor actor);
+        Spell Ai(Actor actor);
     }
 
     /// <summary>Player cat and enemies</summary>
@@ -27,7 +27,7 @@ namespace Meowgic.Match
         [SerializeField] private Observable<int> castAmount;
         [SerializeField] private List<Spell> spells;
 
-        public Func<Actor, IEnumerable<SpellPreparation>> Ai { get; }
+        public Func<Actor, Spell> Ai { get; }
         public Side Side { get; }
         public Battle Battle => Side.Battle;
         public Side OtherSide => Side.OtherSide;

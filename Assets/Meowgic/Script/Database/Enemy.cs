@@ -11,15 +11,13 @@ namespace Meowgic
         [SerializeField] private int castAmount = 1;
         [SerializeField] private Spell[] spells;
 
-        private EnemyAi _ai;
+        private readonly EnemyAi _ai = new();
 
         public int Health => health;
         public int MaxHealth => health;
         public int CastAmount => castAmount;
         public IEnumerable<Spell> Spells => spells;
 
-        IEnumerable<SpellPreparation> IActor.Ai(Actor actor) => _ai.GetPreparation(actor);
-
-        private void OnEnable() => _ai ??= new EnemyAi(this);
+        Spell IActor.Ai(Actor actor) => _ai.GetSpell(actor);
     }
 }
