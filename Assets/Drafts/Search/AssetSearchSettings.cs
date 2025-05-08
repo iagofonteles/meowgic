@@ -22,6 +22,21 @@ namespace Drafts
         }
     }
 
+    public class AssetSearchSettings<T> : ISearchSettings<T> where T : UObj
+    {
+        public Type Type { get; }
+        public string Folder { get; }
+        public string Title => $"{Type.Name} in {Folder}";
+        public IEnumerable<T> GetItens(object target) => AssetSearchSettings._findAssets(Type, Folder).OfType<T>();
+        public string GetName(T o) => o?.name;
+
+        public AssetSearchSettings(string folder)
+        {
+            Type = typeof(T);
+            Folder = folder;
+        }
+    }
+
     public class AssetNameSearchSettings : ISearchSettings<string>
     {
         public static Func<Type, string, IEnumerable<UnityEngine.Object>> _findAssets;
