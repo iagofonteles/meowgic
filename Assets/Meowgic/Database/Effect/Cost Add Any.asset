@@ -10,21 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86d524c1bb7343a3a03bd241b71a24ee, type: 3}
-  m_Name: Stun
+  m_Name: Cost Add Any
   m_EditorClassIdentifier: 
   displayName: 
   description: Cancel next enemy cast
-  icon: {fileID: 21300000, guid: 844a1050d03ba5046bfb86af34a81e47, type: 3}
+  icon: {fileID: 21300000, guid: 1fb46228a3bcb5042a763829cc07f9e5, type: 3}
   script:
-    rid: 9148660361134080114
+    rid: 9148660423550304338
   references:
     version: 2
     RefIds:
-    - rid: 9148660361134080114
-      type: {class: CancelCast, ns: Meowgic.Match.EffectScripts, asm: Meowgic}
+    - rid: 9148660423550304338
+      type: {class: ChangeCost, ns: Meowgic.Match.EffectScripts, asm: Meowgic}
       data:
-        type: 2
+        type: 0
         affectedCasts:
-          targetEnemy: 1
-          castOffset: 0
+          targetEnemy: 0
+          castOffset: 1
           affectedCasts: 1
+        removeSlots: 0
+        addSlots:
+        - {fileID: 11400000, guid: ff9bab0ee1dd9494a82d2cfb001c3b24, type: 2}

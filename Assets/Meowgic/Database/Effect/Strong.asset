@@ -16,21 +16,29 @@ MonoBehaviour:
   description: Next spell damage x2
   icon: {fileID: 21300000, guid: 0e1ccb64303778e4081913a6d9cca677, type: 3}
   script:
-    rid: 9148660361134080115
+    rid: 9148660404369752185
   references:
     version: 2
     RefIds:
-    - rid: 9148660361134080115
+    - rid: 9148660404369752185
+      type: {class: MultipleEffects, ns: Meowgic.Match.EffectScripts, asm: Meowgic}
+      data:
+        type: 1
+        effects:
+          list:
+          - rid: 9148660404369752186
+    - rid: 9148660404369752186
       type: {class: CastStatModifier, ns: Meowgic.Match.EffectScripts, asm: Meowgic}
       data:
+        type: 0
         stat:
-          rid: 9148660361134080116
+          rid: 9148660404369752187
         flatBonus: 0
         multiplier: 2
         affectedCasts:
           targetEnemy: 0
           castOffset: 0
           affectedCasts: 1
-    - rid: 9148660361134080116
+    - rid: 9148660404369752187
       type: {class: Damage, ns: Meowgic.Match.EffectScripts.CastArgsStats, asm: Meowgic}
       data: 

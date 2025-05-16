@@ -23,6 +23,7 @@ MonoBehaviour:
     - rid: 9148660361134080097
       type: {class: CastStatModifier, ns: Meowgic.Match.EffectScripts, asm: Meowgic}
       data:
+        type: 2
         stat:
           rid: 9148660361134080098
         flatBonus: -2
