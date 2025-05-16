@@ -14,11 +14,10 @@ namespace Meowgic.Match.EffectScripts
         {
             foreach (var castArgs in affectedCasts.Resolve(castIndex, turnArgs))
             {
-                for (var i = 0; i < removeSlots; i++)
-                    if (castArgs.Cost.Count > 0)
-                        castArgs.Cost.RemoveAt(0);
-
-                castArgs.Cost.AddRange(addSlots);
+                var min = Math.Min(castArgs.cost.Count, removeSlots);
+                for (var i = 0; i < min; i++)
+                    castArgs.cost.RemoveAt(castArgs.cost.Count - 1);
+                castArgs.cost.AddRange(addSlots);
             }
         }
     }

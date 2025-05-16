@@ -8,10 +8,10 @@ namespace Meowgic.Match
         public static bool IsValidCast(this SpellCastArgs args)
         {
             if (!args.spell) return false;
-            for (var i = 0; i < args.Cost.Count; i++)
+            for (var i = 0; i < args.cost.Count; i++)
             {
-                var used = args.catalysts.ElementAtOrDefault(i);
-                var cost = args.Cost[i];
+                var used = args.Catalysts.ElementAtOrDefault(i);
+                var cost = args.cost[i];
                 if (cost.Compatible(used)) continue;
                 return false;
             }
@@ -42,7 +42,7 @@ namespace Meowgic.Match
         }
 
         public static IEnumerable<EffectScript> EnumerateEffects(this SpellCastArgs cast)
-            => cast.spell.Effects.Concat(cast.catalysts
+            => cast.spell.Effects.Concat(cast.Catalysts
                 .SelectMany(c => c.Effects).Where(e => e).Select(e => e.Script));
     }
 }

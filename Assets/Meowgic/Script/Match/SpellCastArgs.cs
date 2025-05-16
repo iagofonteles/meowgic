@@ -5,16 +5,16 @@ using UnityEngine;
 namespace Meowgic.Match
 {
     [Serializable]
-    public class SpellCastArgs
+    public partial class SpellCastArgs
     {
         [SerializeField] private Actor caster;
-        [SerializeField] private List<CatalystBase> cost = new();
-        
+        [SerializeField] private List<Catalyst> catalysts = new();
+
         public Actor Caster => caster;
         public Actor target;
         public Spell spell;
-        public List<CatalystBase> Cost => cost;
-        public List<Catalyst> catalysts = new();
+        public List<CatalystBase> cost = new();
+        public IReadOnlyList<Catalyst> Catalysts => catalysts;
 
         public int speed;
         public int damage;
@@ -27,12 +27,16 @@ namespace Meowgic.Match
         public Action<SpellCastArgs> PostProcess;
         public Action OnModified;
 
-        public SpellCastArgs(Actor caster) => this.caster = caster;
+        public SpellCastArgs(Actor caster)
+        {
+            this.caster = caster;
+            OnModified = ValidateCatalysts;
+        }
 
         public void ResetValues()
         {
-            Cost.Clear();
-            
+            cost.Clear();
+
             if (spell)
             {
                 speed = spell.Speed;
@@ -40,7 +44,7 @@ namespace Meowgic.Match
                 heal = spell.Heal;
                 shield = spell.Shield;
                 area = spell.Area;
-                Cost.AddRange(spell.Cost);
+                cost.AddRange(spell.Cost);
             }
             else
             {

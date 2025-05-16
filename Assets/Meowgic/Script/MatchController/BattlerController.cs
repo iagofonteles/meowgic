@@ -25,7 +25,7 @@ namespace Meowgic.Match
             battle.PlayerSide.Pool.Draw(drawAmount);
 
             // reset preparation
-            battle.ResetPreparations();
+            battle.ResetCasts();
 
             // enemy preparation
             var index = 0;
@@ -44,7 +44,7 @@ namespace Meowgic.Match
         {
             // refund unused catalysts
             foreach (var args in battle.PlayerSide.Casts.Where(c => !c.IsValidCast()))
-                battle.PlayerSide.Pool.Hand.AddRange(args.catalysts.Where(c => c));
+                battle.PlayerSide.Pool.Hand.AddRange(args.Catalysts.Where(c => c));
 
             // set target
             var target = battle.EnemySide.Actors.First(a => !a.IsDead);

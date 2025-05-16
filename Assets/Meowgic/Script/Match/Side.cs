@@ -11,15 +11,13 @@ namespace Meowgic.Match
     public class Side
     {
         [SerializeField] private List<Actor> actors;
-        [SerializeField] private ObservableList<SpellPreparation> preparation = new();
         [SerializeField] private CardPool<Catalyst> pool;
-        [SerializeField] List<SpellCastArgs> casts = new();
+        [SerializeField] private ObservableList<SpellCastArgs> casts = new();
 
         public Battle Battle { get; }
         public Side OtherSide => this == Battle.PlayerSide ? Battle.EnemySide : Battle.PlayerSide;
         public IReadOnlyList<Actor> Actors => actors;
         public CardPool<Catalyst> Pool => pool;
-        public IObservableList<SpellPreparation> Preparation => preparation;
         public IReadOnlyList<SpellCastArgs> Casts => casts;
         public TurnArgs TurnArgs { get; private set; }
 
@@ -31,15 +29,13 @@ namespace Meowgic.Match
             TurnArgs = new(this);
         }
 
-        public void ResetPreparations()
+        public void ResetCasts()
         {
-            preparation.Clear();
-            preparation.AddRange(actors.SelectMany(GetPreps));
             casts.Clear();
-            casts.AddRange(preparation.Select(p => p.CastArgs));
+            casts.AddRange(actors.SelectMany(GetPreps));
         }
 
-        private IEnumerable<SpellPreparation> GetPreps(Actor a) =>
-            Enumerable.Range(0, a.CastAmount.Value).Select(_ => new SpellPreparation(a));
+        private IEnumerable<SpellCastArgs> GetPreps(Actor a) =>
+            Enumerable.Range(0, a.CastAmount.Value).Select(_ => new SpellCastArgs(a));
     }
 }

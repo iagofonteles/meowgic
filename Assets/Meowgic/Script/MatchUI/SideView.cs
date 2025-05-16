@@ -7,20 +7,20 @@ namespace Meowgic.Match.UI
     {
         [SerializeField] private CollectionView actors;
         [SerializeField] private CatalystPoolView pool;
-        [SerializeField] private CollectionView preparation;
+        [SerializeField] private CollectionView casts;
 
         protected override void Subscribe()
         {
             actors.TrySetData(Data.Actors);
             pool.TrySetData(Data.Pool);
-            preparation.TrySetData(Data.Preparation);
+            casts.TrySetData(Data.Casts);
         }
 
         protected override void Unsubscribe()
         {
             actors.TrySetData(null);
             pool.TrySetData(null);
-            preparation.TrySetData(null);
+            casts.TrySetData(null);
         }
     }
 }

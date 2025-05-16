@@ -44,29 +44,29 @@ namespace Meowgic.Match
             return enemyHealth == 0 ? BattleResult.Win : BattleResult.None;
         }
 
-        public void ResetPreparations()
+        public void ResetCasts()
         {
-            foreach (var prep in sides.SelectMany(s => s.Preparation))
-                prep.OnChanged -= RecalculateCasts;
+            // foreach (var cast in sides.SelectMany(s => s.Casts))
+            //     cast.OnModified -= RecalculateCasts;
 
             foreach (var side in Sides)
-                side.ResetPreparations();
+                side.ResetCasts();
 
-            foreach (var prep in sides.SelectMany(s => s.Preparation))
-                prep.OnChanged += RecalculateCasts;
+            // foreach (var cast in sides.SelectMany(s => s.Casts))
+            //     cast.OnModified += RecalculateCasts;
         }
 
         public void RecalculateCasts()
         {
-            foreach (var args in sides.SelectMany(s => s.Casts))
-                args.ResetValues();
+            foreach (var cast in sides.SelectMany(s => s.Casts))
+                cast.ResetValues();
 
             foreach (var (cast, index, turnArgs) in this.EnumerateCasts())
             foreach (var effect in cast.EnumerateEffects())
                 effect.Setup(index, turnArgs);
-
-            foreach (var args in sides.SelectMany(s => s.Casts))
-                args.OnModified?.Invoke();
+            
+            foreach (var cast in sides.SelectMany(s => s.Casts))
+                cast.OnModified();
         }
     }
 }
